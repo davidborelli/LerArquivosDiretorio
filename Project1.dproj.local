@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2019/01/14 19:27:25.376,=C:\Users\david\Documents\LerArquivosDiretorio\Unit2.pas</Transaction>
+    <Transaction>2019/01/14 19:29:15.130,C:\Users\david\Documents\LerArquivosDiretorio\ArquivoControllerInterfaces.pas=C:\Users\david\Documents\LerArquivosDiretorio\Unit2.pas</Transaction>
+    <Transaction>2019/01/14 19:30:25.108,=C:\Users\david\Documents\LerArquivosDiretorio\Unit2.pas</Transaction>
+    <Transaction>2019/01/14 19:31:13.556,C:\Users\david\Documents\LerArquivosDiretorio\ArquivoControllerDiretorio.pas=C:\Users\david\Documents\LerArquivosDiretorio\Unit2.pas</Transaction>
+  </Transactions>
+</BorlandProject>

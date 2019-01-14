@@ -1,0 +1,12 @@
+unit ArquivoControllerInterfaces;
+
+interface
+
+type
+  iControllerDiretorio = interface
+    ['{20075789-FF74-41DA-B1DF-FD9DBA29DCE6}']
+
+  end;
+implementation
+
+end.

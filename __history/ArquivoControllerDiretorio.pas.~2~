@@ -1,0 +1,37 @@
+unit ArquivoControllerDiretorio;
+
+interface
+
+uses
+  ArquivoModelInterfaces;
+
+type
+  TControllerDiretorio = class(TInterfacedObject, iDiretorio)
+    private
+    public
+      Constructor Create;
+      Destructor Destroy; override;
+      class function New : iDiretorio;
+  end;
+
+implementation
+
+{ TControllerDiretorio }
+
+constructor TControllerDiretorio.Create;
+begin
+
+end;
+
+destructor TControllerDiretorio.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TControllerDiretorio.New: iDiretorio;
+begin
+  Result := Self.Create;
+end;
+
+end.
