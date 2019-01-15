@@ -36,7 +36,6 @@ end;
 function TControllerDiretorio.Diretorio: iDiretorio;
 begin
   Result := TModelDiretorio.New;
-  
 end;
 
 class function TControllerDiretorio.New: iControllerDiretorio;

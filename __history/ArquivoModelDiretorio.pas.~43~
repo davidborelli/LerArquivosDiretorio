@@ -10,11 +10,12 @@ type
   private
     FArquivosDoDiretorio: array of String;
     FArquivoExato: TSearchRec;
-    FArquivosEncontrados: array of String;
+    FArquivosEncontrados: TArrayString;
     FDiretorio: String;
     FSubPastas: Boolean;
     FDisplay: TEvDisplay;
 
+    function GetArquivosEncontrados : TArrayString;
     function ArquivosDoDiretorio(Diretorio: String; Subpastas: Boolean = False) : iDiretorio;
     function BuscaNomeContenha(Busca: String) : iDiretorio;
     function BuscarArquivoNomeExato(Busca: String) : iDiretorio;
@@ -27,6 +28,9 @@ type
   end;
 
 implementation
+
+uses
+  Vcl.Dialogs;
 
 { TModelDiretorio }
 
@@ -55,10 +59,10 @@ begin
       end
       else
       begin
+        FDisplay({FDiretorio+'\'+}F.Name);
         SetLength(FArquivosDoDiretorio, Length(FArquivosDoDiretorio)+1);
         FArquivosDoDiretorio[Length(FArquivosDoDiretorio)-1] := {FDiretorio+'\'+}F.Name;
       end;
-      FDisplay(FDiretorio+'\'+F.Name);
       Ret := FindNext(F);
     end;
   finally
@@ -69,8 +73,21 @@ begin
 end;
 
 function TModelDiretorio.BuscaNomeContenha(Busca: String): iDiretorio;
+var
+  Ponteiro, i: Integer;
 begin
+  Result := Self;
+  i := 0;
 
+  for Ponteiro := 0 to Length(FArquivosDoDiretorio)-1 do
+  begin
+    if Pos(Busca, FArquivosDoDiretorio[Ponteiro]) = 1 then
+    begin
+      SetLength(FArquivosEncontrados, Length(FArquivosEncontrados)+1);
+      FArquivosEncontrados[i] := FArquivosDoDiretorio[Ponteiro];
+      Inc(i);
+    end;
+  end;
 end;
 
 function TModelDiretorio.BuscarArquivoNomeExato(Busca: String): iDiretorio;
@@ -86,6 +103,11 @@ end;
 destructor TModelDiretorio.Destroy;
 begin
   inherited;
+end;
+
+function TModelDiretorio.GetArquivosEncontrados: TArrayString;
+begin
+  Result := FArquivosEncontrados;
 end;
 
 function TModelDiretorio.MostrarEm(Value: TEvDisplay): iDiretorio;

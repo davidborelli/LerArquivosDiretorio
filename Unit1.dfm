@@ -28,6 +28,13 @@ object Form1: TForm1
     Height = 13
     Caption = 'Arquivos'
   end
+  object Label3: TLabel
+    Left = 8
+    Top = 98
+    Width = 73
+    Height = 13
+    Caption = 'Pesquisar por...'
+  end
   object edtDiretorio: TEdit
     Left = 8
     Top = 40
@@ -44,27 +51,26 @@ object Form1: TForm1
     TabOrder = 1
   end
   object memLista: TMemo
-    Left = 144
+    Left = 152
     Top = 40
-    Width = 609
+    Width = 601
     Height = 137
     TabOrder = 2
   end
   object Button1: TButton
-    Left = 16
-    Top = 96
+    Left = 8
+    Top = 144
     Width = 75
     Height = 25
     Caption = '&Listar'
     TabOrder = 3
     OnClick = Button1Click
   end
-  object Button2: TButton
-    Left = 16
-    Top = 152
-    Width = 75
-    Height = 25
-    Caption = 'Mostrar'
+  object edtBusca: TEdit
+    Left = 8
+    Top = 117
+    Width = 121
+    Height = 21
     TabOrder = 4
   end
 end

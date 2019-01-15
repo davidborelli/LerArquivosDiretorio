@@ -15,7 +15,6 @@ type
     FSubPastas: Boolean;
     FDisplay: TEvDisplay;
 
-    function DiretorioVazio: Boolean;
     function GetArquivosEncontrados : TArrayString;
     function ArquivosDoDiretorio(Diretorio: String; Subpastas: Boolean = False) : iDiretorio;
     function BuscaNomeContenha(Busca: String) : iDiretorio;
@@ -80,15 +79,21 @@ begin
   Result := Self;
   i := 0;
 
-  for Ponteiro := 0 to Length(FArquivosDoDiretorio)-1 do
-  begin
-    if Pos(Busca, FArquivosDoDiretorio[Ponteiro]) = 1 then
+  try
+    for Ponteiro := 0 to Length(FArquivosDoDiretorio)-1 do
     begin
-      SetLength(FArquivosEncontrados, Length(FArquivosEncontrados)+1);
-      FArquivosEncontrados[i] := FArquivosDoDiretorio[Ponteiro];
-      Inc(i);
+      if Pos(Busca, FArquivosDoDiretorio[Ponteiro]) = 1 then
+      begin
+        SetLength(FArquivosEncontrados, Length(FArquivosEncontrados)+1);
+        FArquivosEncontrados[i] := FArquivosDoDiretorio[Ponteiro];
+        Inc(i);
+      end;
     end;
+  except on E: Exception do
+    ShowMessage(E.Message);
   end;
+
+
 end;
 
 function TModelDiretorio.BuscarArquivoNomeExato(Busca: String): iDiretorio;
@@ -125,11 +130,6 @@ end;
 function TModelDiretorio.TemAtributo(Attr, Val: Integer): Boolean;
 begin
   Result := Attr and Val = Val;
-end;
-
-function TModelDiretorio.DiretorioVazio: Boolean;
-begin
-  Result := FDiretorio = '';
 end;
 
 end.

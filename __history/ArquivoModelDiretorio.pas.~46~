@@ -10,11 +10,12 @@ type
   private
     FArquivosDoDiretorio: array of String;
     FArquivoExato: TSearchRec;
-    FArquivosEncontrados: array of String;
+    FArquivosEncontrados: TArrayString;
     FDiretorio: String;
     FSubPastas: Boolean;
     FDisplay: TEvDisplay;
 
+    function GetArquivosEncontrados : TArrayString;
     function ArquivosDoDiretorio(Diretorio: String; Subpastas: Boolean = False) : iDiretorio;
     function BuscaNomeContenha(Busca: String) : iDiretorio;
     function BuscarArquivoNomeExato(Busca: String) : iDiretorio;
@@ -67,13 +68,31 @@ begin
   finally
     begin
       FindClose(F);
-      ShowMessage(IntToStr(Length(FArquivosDoDiretorio)));
     end;
   end;
 end;
 
 function TModelDiretorio.BuscaNomeContenha(Busca: String): iDiretorio;
+var
+  Ponteiro, i: Integer;
 begin
+  Result := Self;
+  i := 0;
+
+  try
+    for Ponteiro := -1 to Length(FArquivosDoDiretorio)-1 do
+    begin
+      if Pos(Busca, FArquivosDoDiretorio[Ponteiro]) = 1 then
+      begin
+        SetLength(FArquivosEncontrados, Length(FArquivosEncontrados)+1);
+        FArquivosEncontrados[i] := FArquivosDoDiretorio[Ponteiro];
+        Inc(i);
+      end;
+    end;
+  except on E: Exception do
+    ShowMessage(E.Message + ' Precisa primeiro inicializar a busca executando o método ArquivosDoDiretorio');
+  end;
+
 
 end;
 
@@ -90,6 +109,11 @@ end;
 destructor TModelDiretorio.Destroy;
 begin
   inherited;
+end;
+
+function TModelDiretorio.GetArquivosEncontrados: TArrayString;
+begin
+  Result := FArquivosEncontrados;
 end;
 
 function TModelDiretorio.MostrarEm(Value: TEvDisplay): iDiretorio;

@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ArquivoModelInterfaces, ArquivoModelDiretorio;
+  StdCtrls, ArquivoModelInterfaces;
 
 type
   TForm1 = class(TForm)
@@ -30,30 +30,32 @@ var
 
 implementation
 
+uses
+  ArquivoControllerDiretorio;
+
 {$R *.DFM}
 
 procedure TForm1.Button1Click(Sender: TObject);
+var
+  ArrayTeste: TArrayString;
 begin
   memLista.Lines.Clear;
-  //ListarArquivos(edtDiretorio.Text, chkSub.Checked)
-  FDiretorio
+
+  {FDiretorio
     .MostrarEm(ExibirResultado)
-    .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked);
+    .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked);   }
+
+  ArrayTeste := FDiretorio
+    .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked)
+    .BuscaNomeContenha('Arquivo')
+    .GetArquivosEncontrados;
+
+  ShowMessage(IntToStr(Length(ArrayTeste)));
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  FDiretorio := TModelDiretorio.New;
-end;
-
-procedure TForm1.ListarArquivos(Diretorio: string; Sub: Boolean);
-begin
-
-end;
-
-function TForm1.TemAtributo(Attr, Val: Integer): Boolean;
-begin
-
+  FDiretorio := TControllerDiretorio.New.Diretorio;
 end;
 
 procedure TForm1.ExibirResultado(Value: String);

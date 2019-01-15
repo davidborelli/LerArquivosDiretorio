@@ -14,8 +14,7 @@ type
     Label2: TLabel;
     memLista: TMemo;
     Button1: TButton;
-    edtBusca: TEdit;
-    Label3: TLabel;
+    Button2: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -45,8 +44,13 @@ begin
   ArrayTeste := FDiretorio
                   .MostrarEm(ExibirResultado)
                   .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked)
-                  .BuscaNomeContenha(edtBusca.Text)
+                  .BuscaNomeContenha('Arquivo')
                   .GetArquivosEncontrados;
+
+  {ArrayTeste := FDiretorio
+    .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked)
+    .BuscaNomeContenha('Arquivo')
+    .GetArquivosEncontrados;  }
 
   ShowMessage(IntToStr(Length(ArrayTeste)));
 end;

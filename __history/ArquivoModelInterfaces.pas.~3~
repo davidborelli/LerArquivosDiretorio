@@ -12,7 +12,7 @@ type
     function BuscaNomeContenha(Busca: String) : iDiretorio;
     function BuscarArquivoNomeExato(Busca: String) : iDiretorio;
     function MostrarEm(Value: TEvDisplay): iDiretorio;
-    function GetArquivosEncontrados : TArrayString;
+    function GetArquivosEncontrados : TArrayString
   end;
 
   iArquivo = interface

@@ -36,12 +36,26 @@ uses
 {$R *.DFM}
 
 procedure TForm1.Button1Click(Sender: TObject);
+var
+  ArrayTeste: TArrayString;
 begin
   memLista.Lines.Clear;
 
+  {ArrayTeste := FDiretorio
+                  .MostrarEm(ExibirResultado)
+                  .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked)
+                  .BuscaNomeContenha('Arquivo')
+                  .GetArquivosEncontrados;}
   FDiretorio
     .MostrarEm(ExibirResultado)
     .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked);
+
+  {ArrayTeste := FDiretorio
+    .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked)
+    .BuscaNomeContenha('Arquivo')
+    .GetArquivosEncontrados;  }
+
+  ShowMessage(IntToStr(Length(ArrayTeste)));
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

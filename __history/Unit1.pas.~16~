@@ -43,7 +43,6 @@ begin
   memLista.Lines.Clear;
 
   ArrayTeste := FDiretorio
-                  .MostrarEm(ExibirResultado)
                   .ArquivosDoDiretorio(edtDiretorio.Text, chkSub.Checked)
                   .BuscaNomeContenha(edtBusca.Text)
                   .GetArquivosEncontrados;
